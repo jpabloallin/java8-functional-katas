@@ -20,5 +20,6 @@ public class Kata5 {
         List<Movie> movies = DataUtil.getMovies();
 
         return movies.stream().map(Movie::getRating).reduce(Double.MIN_VALUE, Double::max);
+
     }
 }

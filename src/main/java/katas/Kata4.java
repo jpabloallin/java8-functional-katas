@@ -19,7 +19,6 @@ public class Kata4 {
     public static List<Map> execute() {
         List<MovieList> movieLists = DataUtil.getMovieLists();
 
-        //ImmutableList.of(ImmutableMap.of("id", 5, "title", "Bad Boys", "boxart", new BoxArt(150, 200, "url")));
         return movieLists
                 .stream()
                 .flatMap(v -> v.getVideos().stream())
