@@ -53,6 +53,9 @@ public class Kata10 {
         List<Map> lists = DataUtil.getLists();
         List<Map> videos = DataUtil.getVideos();
 
+//        ImmutableList.of(ImmutableMap.of("name", "someName", "videos", ImmutableList.of(
+//                ImmutableMap.of("id", 5, "title", "The Chamber"),
+//                ImmutableMap.of("id", 3, "title", "Fracture")
         return lists
                 .stream()
                 .map(list -> ImmutableMap.of("name", list.get("name"), "videos", videos.stream()
