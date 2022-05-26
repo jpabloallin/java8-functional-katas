@@ -9,6 +9,7 @@ import util.DataUtil;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /*
     Goal: Retrieve the id, title, and smallest box art url for every video
@@ -18,7 +19,10 @@ import java.util.Map;
 public class Kata7 {
     public static List<Map> execute() {
         List<MovieList> movieLists = DataUtil.getMovieLists();
-
-        return ImmutableList.of(ImmutableMap.of("id", 5, "title", "Bad Boys", "boxart", "url"));
+        //ImmutableList.of(ImmutableMap.of("id", 5, "title", "Bad Boys", "boxart", "url"));
+        return  movieLists.stream()
+                .flatMap(m-> m.getVideos().stream()
+                        .map(x-> ImmutableMap.of("id",x.getId(),"title", x.getTitle(), "boxart",x.getBoxarts()
+                                .stream().reduce((a,b) -> a.getWidth() * a.getHeight() < b.getWidth() * b.getHeight() ? a:b).map(p-> ImmutableMap.of("boxart",p.getUrl()))))).collect(Collectors.toList());
     }
 }
